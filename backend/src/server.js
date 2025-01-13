@@ -6,9 +6,11 @@ import 'dotenv/config'
 connect();
 const server=express();
 
-server.use('/api/auth',authRouter);
 server.use(cookieParser());
 server.use(express.json());
+
+server.use('/api/auth',authRouter);
+
 
 server.get('/',(req,res)=>{res.send('server is up')});
 server.listen(process.env.PORT,()=>{console.log('server is up!')});
