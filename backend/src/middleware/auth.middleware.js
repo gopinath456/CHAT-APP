@@ -1,5 +1,8 @@
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
+
+// Implemented middleware for user authentication.
+
 const protectRoute=async(req,res,next)=>{
     try {
         const token=req.cookie;
