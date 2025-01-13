@@ -24,7 +24,7 @@ const signUp=async (req,res)=>{
             createToken(userdoucment._id,res)
         return res.status(201).json(
             {
-                id:userdoucment._id,
+                _id:userdoucment._id,
                 fullName:userdoucment.name,
                 email:userdoucment.email,
                 profilePic:userdoucment.profilepic
@@ -41,14 +41,53 @@ const signUp=async (req,res)=>{
     
 }
 
-const singIn=(req,res)=>{
-    res.send('sing in')
-  
+// created singIn controller
+const singIn= async (req,res)=>{
+    try {
+        const {email,password}=req.body;
+        if(!email||!password)
+           return res.status(404).json({message:'all fields requred'})
+        const userdoucment=await User.findOne({email:email});
+        if(!userdoucment)
+            return res.status(404).json({message:'invalid credentials'});
+        const passwordCompare=await bcrypt.compare(password,userdoucment.password)
+        if(passwordCompare){
+            // generate token
+            createToken(userdoucment._id,res);
+           return res.status(202).json({
+                _id:userdoucment._id,
+                fullName:userdoucment.name,
+                email:userdoucment.email,
+                profilePic:userdoucment.profilepic
+            })
+        }
+        else
+           res.status(404).json({message:"invalid credentials"})
+        
+    } catch (error) {
+        console.log('there is error in singIn controller',error.message);
+        res.status(500).json({message:"internal server error"});
+    } 
 }
 
 const logOut=(req,res)=>{
-    res.send('log out');
+    try {
+        res.clearCookie('token');
+        return res.status(200).json({message:'succussfully loged out'});
+    } catch (error) {
+        console.log('there is an error in logout controller',error.message);
+        return res.status(500).json({message:"internal server error"})
+    }
   
 }
 
-export {singIn,signUp,logOut};
+const updateProfilePic=async (req,res)=>{
+    try {
+        
+    } catch (error) {
+        
+    }
+
+}
+
+export {singIn,signUp,logOut,updateProfilePic};
