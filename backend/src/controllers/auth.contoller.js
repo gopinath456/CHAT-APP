@@ -1,6 +1,7 @@
 import User from "../model/user.model.js"
 import bcrypt from 'bcryptjs'
 import { createToken } from "../lb/jwt.js";
+import { json } from "express";
 
 // sing up controller
 const signUp=async (req,res)=>{
@@ -83,7 +84,7 @@ const logOut=(req,res)=>{
 
 const updateProfilePic=async (req,res)=>{
     try {
-        
+        return res.send('hi')
     } catch (error) {
         
     }

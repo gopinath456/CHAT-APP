@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 const createToken=(userid,res)=>{
-    const token=jwt.sign({id:userid},process.env.KEY,{expiresIn:'4h'})
+    const token=jwt.sign({_id:userid},process.env.KEY,{expiresIn:'4h'})
     res.cookie('token',token,{
     httpOly:true,
     maxAge:7*24*60*60*1000,
