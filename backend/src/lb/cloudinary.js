@@ -1,5 +1,7 @@
 import {v2 as cloudinary} from 'cloudinary'
-import "domain/config"
+import "dotenv/config"
+
+// Configure Cloudinary with your cloud name, API key, and API secret
 
 cloudinary.config({
     cloud_name:process.env.CLOUDINARY_NAME,
