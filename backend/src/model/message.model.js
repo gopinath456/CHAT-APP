@@ -22,6 +22,7 @@ const schema=new mongoose.Schema({
 },{timestamps:true})
 
 //created the Message model
+
 const Message=mongoose.model('Message',schema);
 
 export default Message;
