@@ -40,6 +40,19 @@ const useStore = create((set)=>({
         } finally{
           set({isSigningIn:false})
         }
+    },
+    login:async (formData)=>{
+      set({isLoggingIn:true});
+      try {
+        const {data}=await axiosinstance.post('/auth/signin',formData);
+        set({authUser:data});
+        toast.success('You have logged in successfully!');
+      } catch (error) {
+        console.log('error in login state function',error.message);
+        toast.error(error.response.data.message)
+      } finally{
+        set({isLoggingIn:false});
+      }
     }
  }))
 

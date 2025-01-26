@@ -30,7 +30,7 @@ const SingUpPage = () => {
   if(success===true) signUp(formData);
   }
   return (
-    <div className='grid lg:grid-cols-2  max-h-[95vh] '>
+    <div className='grid lg:grid-cols-2  min-h-[95vh] '>
       <div className='p-6 sm:p-12 flex flex-col justify-center items-center bg-gray-700'>
       <div className='w-full max-w-md space-y-8 text-gray-100'>
         {/* message icon */}
