@@ -53,6 +53,22 @@ const useStore = create((set)=>({
       } finally{
         set({isLoggingIn:false});
       }
+    },
+    updateProfile:async(profilePic)=>{
+     set({isUpdatingProfile:true})
+     try {
+      const {data}=await axiosinstance.put('/auth/update-profilePic',{
+        profilepic:profilePic
+      });
+      console.log(data);
+      set({authUser:data});
+      toast.success('updated profile Pic succussfylly!');
+     } catch (error) {
+       console.log('error in updateProfile state function',error.message);
+       toast.error(error.response.data.message);
+     }finally{
+      set({isUpdatingProfile:false})
+     }
     }
  }))
 

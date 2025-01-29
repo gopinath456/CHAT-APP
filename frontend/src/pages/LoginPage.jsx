@@ -10,7 +10,8 @@ const LoginPage = () => {
     email:'',
     password:''
   })
-
+  
+  console.log(formdata)
   const [showPassword,setShowPassword]=useState(false);
 
   const {isLoggingIn,login}= useStore();
@@ -23,15 +24,15 @@ const LoginPage = () => {
   
   const validate=()=>{
     if(!formdata.email.trim()) return toast.error('Email field requied');
-    if (!/\S+@\S+\.\S+/.test(formData.email)) return toast.error("Invalid email format");
+    if (!/\S+@\S+\.\S+/.test(formdata.email)) return toast.error("Invalid email format");
     if(!formdata.password.trim()) return toast.error('password field required');
-    if(!formdata.password.length<6) return toast.error('password must be atleast 6 character')
+    if(!formdata.password.length>6) return toast.error('password must be atleast 6 character')
     return true;
   }
 
   return (
-    <div className='bg-red-300 grid h-[95vh] grid-cols-2'>
-      <div className='bg-gray-700 text-white flex justify-center items-center w-full'>
+    <div className=' grid h-[95vh] lg:grid-cols-2'>
+      <div className='bg-gray-700 text-white flex justify-center items-center w-full p-6 sm:p-12'>
         <div className='w-full max-w-md flex flex-col gap-4'>
             <div className='flex flex-col justify-center items-center gap-2'>
               <div className='bg-gray-900 w-10 h-10 flex justify-center items-center rounded-md hover:bg-gray-800 '>
@@ -80,10 +81,7 @@ const LoginPage = () => {
           </div>
       </div>
       </div>
-
-      <div className='bg-gray-600'>
         <AuthImagePattern title={'Welcome Back'} subtitle={'Sign in to continue your converstaion and catch up with you messages'}/>
-      </div>
     </div>
   )
 }
