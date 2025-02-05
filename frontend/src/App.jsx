@@ -10,6 +10,7 @@ import useStore from './store/authStore'
 import { useEffect } from 'react'
 import {Loader} from 'lucide-react'
 import {Toaster} from 'react-hot-toast'
+import SidebarSkeleton from '../practice/SidebarSkeleton'
 
 function App() {
   const { authUser, checkingAuth, isCheckingAuth}=useStore()
@@ -30,6 +31,7 @@ function App() {
             <Route path='/login' Component={authUser?HomePage:LoginPage}></Route>
             <Route path='/setting' Component={Settings}></Route>
             <Route path='/profile' Component={authUser?Profile:HomePage}></Route>
+            <Route path='/profile1' element={<SidebarSkeleton/>}></Route>
         </Routes>
         <Toaster/>
     </div>
